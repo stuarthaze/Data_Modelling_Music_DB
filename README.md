@@ -33,7 +33,9 @@ start_time, hour, day, week, month, year, weekday
     - `python create_tables.py`
 4.  Perform the ETL (Extract Load Transform) process and fill in the database
     - `python etl.py`
-5. Use the database to perform further data analysis. 
+5. Log in to the database. This can be done using psql as follows (default port setting)
+    - `psql -h localhost -p 5432 -U student sparkifydb`
+6. Use the database to perform queries of interest. 
     - Example: Which users have played the most songs?
 ```
 SELECT songplays.user_id, users.first_name, COUNT(*) 
