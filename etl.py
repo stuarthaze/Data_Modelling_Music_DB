@@ -17,6 +17,10 @@ def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
 
+    # Remove leading and trailing white space and converting names to lower case to avoid problems matching
+    df['title'] = df['title'].str.strip().str.lower()
+    df['artist_name'] = df['artist_name'].str.strip().str.lower()
+
     # insert song record
     song_data = list(df[['song_id', 'title', 'artist_id', 'year', 'duration']].values[0])
     cur.execute(song_table_insert, song_data)
@@ -59,14 +63,19 @@ def process_log_file(cur, filepath):
     for i, row in user_df.iterrows():
         cur.execute(user_table_insert, row)
 
+    df['song'] = df['song'].str.strip().str.lower()
+    df['artist'] = df['artist'].str.strip().str.lower()
+    df['length'] = df['length'].round()
+
     # insert songplay records
     for index, row in df.iterrows():
-        
+
         # get songid and artistid from song and artist tables
-        cur.execute(song_select, (row.song, row.artist, int(row.length)))
+        cur.execute(song_select, (row.song, row.artist, row.length))
         results = cur.fetchone()
 
         if results:
+            print("Song match found:", row.song, results)
             songid, artistid = results
         else:
             songid, artistid = None, None
