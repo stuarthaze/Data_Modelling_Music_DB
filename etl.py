@@ -51,7 +51,9 @@ def process_log_file(cur, filepath):
     # insert time data records
     time_data = (t.astype(str), t.dt.hour, t.dt.day, t.dt.isocalendar().week, t.dt.month, t.dt.year, t.dt.weekday)
     column_labels = ('timestamp', 'hour', 'day', 'week_of_year', 'month', 'year', 'weekday')
-    time_df = pd.DataFrame(time_data, index=column_labels).transpose()
+    time_df = pd.DataFrame(columns=column_labels)
+    for i, col in enumerate(time_data):
+        time_df[column_labels[i]] = col
 
     for i, row in time_df.iterrows():
         cur.execute(time_table_insert, list(row))
