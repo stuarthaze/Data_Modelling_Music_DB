@@ -57,4 +57,4 @@ SELECT songplays.user_id, users.first_name, COUNT(*)
 
 ***
 ### NOTE
-There needs to be a lot more data added to the song library for more interesting queries.
+There needs to be a lot more data added to the song library for more interesting queries since many of the songs played by the users are not contained in the song data. The data in this project was provided by Udatcity and is a subset of the [Million song dataset](http://millionsongdataset.com/) and could easily be expanded.
