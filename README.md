@@ -1,9 +1,9 @@
-# Udacity Data Engineering Project 1
+# Udacity Data Engineering Project #1
 ## Schema for song play analysis
 ***
 ## Overview 
-Create a song database called 'sparkifydb' using a star schema optimized for queries on song plays.  The database itself is implemented in PostgreSQL and interactions are performed in Python using the library psycopg2.  
-The database contains the following tables:
+This code creates a PostgreSQL song database called 'sparkifydb' optimized for queries on song plays.  The code itself is Python using the library psycopg2 to interact with the database.  
+The database is build using a star schema, with one central fact table (songplays) which is linked to four dimension tables (users, songs, artists, time) which contain additional information that can be accessed by their primary keys:
 
 ### Fact table:
 #### `songplays`
@@ -31,7 +31,7 @@ start_time, hour, day, week, month, year, weekday
     - `CREATE DATABASE IF NOT EXISTS studentdb`
 3. Run create_tables
     - `python create_tables.py`
-4.  Perform the ETL (Extract Load Transform) process and fill in the database
+4.  Perform the ETL (Extract Load Transform) process to fill in the database
     - `python etl.py`
 5. Log in to the database. This can be done using psql as follows (default port setting)
     - `psql -h localhost -p 5432 -U student sparkifydb`
@@ -57,4 +57,4 @@ SELECT songplays.user_id, users.first_name, COUNT(*)
 
 ***
 ### NOTE
-There needs to be a lot more data added to the song library for more interesting queries since many of the songs played by the users are not contained in the song data. The data in this project was provided by Udatcity and is a subset of the [Million song dataset](http://millionsongdataset.com/) and could easily be expanded.
+There needs to be a lot more data added to the song library for more interesting queries since many of the songs played by the users are not contained in the song data. The data in this project was provided by Udacity and is a subset of the [Million song dataset](http://millionsongdataset.com/) and could easily be expanded.
