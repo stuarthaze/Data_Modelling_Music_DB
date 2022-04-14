@@ -79,7 +79,8 @@ def process_log_file(cur, filepath):
         results = cur.fetchone()
 
         if results:
-            print("Song match found:", row.song, results)
+            # Uncomment to check for matches while loading
+            # print("Song match found:", row.song, results)
             songid, artistid = results
         else:
             songid, artistid = None, None
