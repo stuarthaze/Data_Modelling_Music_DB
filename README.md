@@ -35,7 +35,11 @@ start_time, hour, day, week, month, year, weekday
     - `python etl.py`
 5. Log in to the database. This can be done using psql as follows (default port setting)
     - `psql -h localhost -p 5432 -U student sparkifydb`
-6. Use the database to perform queries of interest. 
+6. Check that the tables have been correctly loaded with the commands
+    - `\d` - Print a description of the database
+    - `\d <table name>` Print a description of a given table
+
+7. Use the database to perform queries of interest. 
     - Example: Which users have played the most songs?
 ```
 SELECT songplays.user_id, users.first_name, COUNT(*) 
